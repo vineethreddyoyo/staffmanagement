@@ -1,0 +1,2 @@
+Create table hotels (hotel_id INTEGER PRIMARY KEY,total_rooms INTEGER, current_bookings INTEGER, current_staff INTEGER, ratio REAL, cluster_id INTEGER);
+Create table staff (staff_id INTEGER PRIMARY KEY, staff_name  VARCHAR, salary INTEGER, hotel_id INTEGER);
