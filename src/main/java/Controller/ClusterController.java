@@ -21,4 +21,10 @@ public class ClusterController {
 		return "cluster created";
 	}
 	
+	@RequestMapping("/update_cluster")
+	public String update() {
+		
+		return "updated cluster";
+	}
+	
 }

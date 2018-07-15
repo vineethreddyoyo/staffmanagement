@@ -20,12 +20,7 @@ public class HotelService {
 		System.out.println(ht.getRatio());
 		ht.setCurrentStaff(staff);
 		hr.save(ht);
-		
-		
-		
-		
-		
-		
+			
 	
 	}
 	
