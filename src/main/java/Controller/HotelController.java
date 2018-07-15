@@ -11,12 +11,17 @@ import com.example.management.ClusterRepository;
 import com.example.management.Hotel;
 import com.example.management.HotelRepository;
 
+import Services.HotelService;
+
 @RestController
 public class HotelController {
 @Autowired
 HotelRepository hr;
 @Autowired
 ClusterRepository cr;
+
+@Autowired
+HotelService hs;
 
 @RequestMapping("/create_hotel")
 public String create()
@@ -52,5 +57,15 @@ public String check() {
 	
 }
 
+@RequestMapping("/hotel_room_update")
+public String update_room_hotel()
+{
+	int staff = 5;
+	
+	hs.update_hotel((long) 1, staff);
+	
+	
+return "updated";
+}
 	
 }
