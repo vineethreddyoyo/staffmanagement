@@ -35,6 +35,7 @@ public class GlobalService {
 		}
 		
 		for(Hotel i : hotels) {
+			update_hotel_ratio(i.getHotelId());
 			hr.save(i);
 		}
 		
@@ -43,6 +44,14 @@ public class GlobalService {
 		return "CorrectedStaff";				
 	}
 	
+	
+	public void update_hotel_ratio(Long hotel_id)
+	{
+		Hotel ht = hr.findOne(hotel_id);
+		ht.setRatio(ht.getTotalRooms()/ht.getCurrentStaff());
+		hr.save(ht);
+		
+	}
 	
 	
 }
