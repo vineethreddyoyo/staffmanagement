@@ -1,6 +1,5 @@
 package Services;
 
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -48,7 +47,7 @@ public class GlobalService {
 	public void update_hotel_ratio(Long hotel_id)
 	{
 		Hotel ht = hr.findOne(hotel_id);
-		ht.setRatio(ht.getTotalRooms()/ht.getCurrentStaff());
+		ht.setRatio((double)ht.getTotalRooms()/(double)ht.getCurrentStaff());
 		hr.save(ht);
 		
 	}

@@ -22,6 +22,12 @@ public class StaffService {
 	@Autowired
 	HotelRepository hr;
 	
+	public String addStaff(Staff s,Long hotel_id) {
+		System.out.println(hotel_id);
+		s.setHotel(hr.findOne(hotel_id));
+		sr.save(s);
+		return "staff added";
+	}
 	
 	
 	public String allocate(Long hotel_id)
@@ -63,6 +69,13 @@ public class StaffService {
 		
 		return "allocated";
 	}
+
+
+	public Staff getStaff() {
+		// TODO Auto-generated method stub
+		return sr.findOne((long) 1);
+	}
+
 	
 	//yes
 }

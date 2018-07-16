@@ -1,7 +1,10 @@
 package Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.management.HotelRepository;
@@ -21,20 +24,31 @@ HotelRepository hr;
 @Autowired
 StaffService ss;
 
-@RequestMapping("/create_staff")
-public String Create()
+
+@RequestMapping(method = RequestMethod.POST, value = "/add_staff")
+public String addStaff(@RequestBody Staff s, @RequestParam("hotel_id") Long hotel_id)
 {
-	Staff s = new Staff((long) 1,"vineeth",5000);
-	s.setHotel(hr.getOne((long) 1));
-	sr.save(s);
-	return "staff created";
+
+	return ss.addStaff(s,hotel_id);
+
+	
 }
+
+@RequestMapping("/get_staff")
+public Staff getStaff() {
+	
+	return ss.getStaff();
+}
+
+
 @RequestMapping("get_staff_cluster")
 public String getStaff_Cluster()
 {
 	
 return sr.getOne((long) 1).getHotel().getCluster().getClusterName();
 }
+
+
 
 @RequestMapping("/allocate")
 public String allocate() {
