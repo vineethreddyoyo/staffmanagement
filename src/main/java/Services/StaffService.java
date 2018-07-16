@@ -2,12 +2,15 @@ package Services;
 
 
 
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.management.Cluster;
 import com.example.management.Hotel;
 import com.example.management.HotelRepository;
+import com.example.management.Staff;
 import com.example.management.StaffRepository;
 
 @Service
@@ -28,8 +31,6 @@ public class StaffService {
 		Cluster c = AllocatedHotel.getCluster();
 		Iterable<Hotel> hotels = hr.findBycluster(c); 
 		Hotel currentHotel = null;
-		//System.out.println(cluster_id);
-		//System.out.println(AllocatedHotel.getManager().getManagerName());
 		for(Hotel i : hotels){
 
 				System.out.println(i.getHotelId());
@@ -41,8 +42,20 @@ public class StaffService {
 	            }
 	        }
 		
+		Set<Staff> h_staffs  = currentHotel.getStaffs();
+		Staff temp = null;
+		for(Staff i : h_staffs) {
+			i.setHotel(AllocatedHotel);
+			temp = i ;
+			break;
+			
+		}
+		
+		
+		sr.save(temp);
 		int c_staff= currentHotel.getCurrentStaff();
 		currentHotel.setCurrentStaff(c_staff-1);
+		
 		hr.save(currentHotel);
 		AllocatedHotel.setCurrentStaff(AllocatedHotel.getCurrentStaff()+1);
 		hr.save(AllocatedHotel);
