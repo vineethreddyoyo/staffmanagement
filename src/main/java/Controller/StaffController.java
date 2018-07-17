@@ -53,7 +53,7 @@ return sr.getOne((long) 1).getHotel().getCluster().getClusterName();
 @RequestMapping("/allocate")
 public String allocate() {
 	
-	ss.allocate((long) 2);
+	ss.allocate((long) 1);
 
 	return "allocated";
 }
