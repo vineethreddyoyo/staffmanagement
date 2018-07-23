@@ -34,10 +34,22 @@ public class Hotel {
     @Column(name = "ratio")
     private double ratio;
     
+    @Column(name="hotel_name")
+    private String hotelName;
+    
     @OneToOne(mappedBy="hotel")
     private Manager manager;
     
-    @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL)
+    
+    
+    public String getHotelName() {
+		return hotelName;
+	}
+	public void setHotelName(String hotelName) {
+		this.hotelName = hotelName;
+	}
+
+	@OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL)
     private Set<Staff> staffs = new HashSet<>();
     
     @ManyToOne(cascade = CascadeType.ALL)
@@ -86,8 +98,8 @@ public class Hotel {
 	public double getRatio() {
 		return ratio;
 	}
-	public void setRatio(double ratio) {
-		this.ratio = ratio;
+	public void setRatio() {
+		this.ratio = (double)this.currentBookings/(double)this.currentStaff;
 	}
 	public Manager getManager() {
 		return manager;
@@ -95,13 +107,14 @@ public class Hotel {
 	public void setManager(Manager manager) {
 		this.manager = manager;
 	}
-	public Hotel(Long hotelId, int currentBookings, int currentStaff, int totalRooms, double ratio) {
+	public Hotel(Long hotelId, String hotelName, int currentBookings, int currentStaff, int totalRooms, double ratio) {
 		super();
 		this.hotelId = hotelId;
 		this.currentBookings = currentBookings;
 		this.currentStaff = currentStaff;
 		this.totalRooms = totalRooms;
 		this.ratio = ratio;
+		this.hotelName = hotelName;
 
 	}
 	

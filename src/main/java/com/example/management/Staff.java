@@ -4,6 +4,7 @@ package com.example.management;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -14,6 +15,7 @@ import javax.persistence.Table;
 public class Staff {
 
     @Id
+    @GeneratedValue
     @Column(name = "staff_id")
     private Long staffId;
 
@@ -23,6 +25,9 @@ public class Staff {
     
     @Column(name="salary")
     private int salary;
+    
+    @Column(name="Phone")
+    private String phone;
 
     @ManyToOne( cascade = CascadeType.ALL)
     @JoinColumn(name="hotel_id")
@@ -64,11 +69,22 @@ public class Staff {
         this.salary = salary;
     }
 
-	public Staff(Long staffId, String staffName, int salary) {
-		super();
-		this.staffId = staffId;
-		this.staffName = staffName;
-		this.salary = salary;
+	public String getPhone() {
+		return phone;
 	}
 
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public Staff( String staffName, int salary, String phone) {
+		super();
+		this.staffName = staffName;
+		this.salary = salary;
+		this.phone = phone;
+	}
+
+	
+
+	
 }

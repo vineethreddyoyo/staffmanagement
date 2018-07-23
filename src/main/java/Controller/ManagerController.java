@@ -1,6 +1,8 @@
 package Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -10,6 +12,7 @@ import com.example.management.Manager;
 import com.example.management.ManagerRepository;
 
 @RestController
+@CrossOrigin
 public class ManagerController {
 
 	@Autowired
@@ -19,11 +22,11 @@ public class ManagerController {
 	ManagerRepository mr;
 	
 	
-	@RequestMapping("/create_manager")
-	public String create_manager() {
+	@RequestMapping("/create_manager/{hotel_id}/{id}/{name}")
+	public String create_manager(@PathVariable("hotel_id") int hotel_id,@PathVariable("id") int id,@PathVariable("name") String name ) {
 		
-		Hotel ht  = hr.findOne((long) 2);
-		Manager m = new Manager((long) 2,"queen","k","pass");
+		Hotel ht  = hr.findOne((long) hotel_id);
+		Manager m = new Manager((long) id,name,"k","pass");
 		m.setHotel(ht);
 		mr.save(m);		
 		return "manager created";
